@@ -1,12 +1,17 @@
 @extends('layouts.app')  
-  
+
 @section('content')  
 <div class="container">  
     <h1>Activities List</h1>
-    <a href="{{ route('activities.export') }}" class="btn btn-success mb-3">  
+    @if(Auth::user()->role == 'admin')
+    <a href="{{ route('admin.activities.export') }}" class="btn btn-success mb-3">  
     <i class="fa-regular fa-file-excel"></i> Download XLS  
-</a>      
+    </a>      
+    @endif
     
+    <a href="{{ route('absen.index') }}" class="btn btn-secondary mb-3">Kembali ke Kehadiran</a>  
+  
+
     @if (session('success'))  
         <div class="alert alert-success">  
             {{ session('success') }}  

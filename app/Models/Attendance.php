@@ -2,12 +2,21 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
-class Attendance extends Model
+class Attendance extends Model implements FromCollection
 {
+
     use HasFactory;
+
+
+    public function collection()
+    {
+        return Attendance::all();
+    }
 
     protected $fillable = [
         'user_id',
@@ -19,6 +28,7 @@ class Attendance extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 
     public function getDurationAttribute()
     {

@@ -3,7 +3,11 @@
 @section('content')
 <div class="container mt-5">
         <h1>Daftar Pengguna Terdaftar</h1>  
-          
+        @if(Auth::user()->role == 'admin')
+    <a href="{{ route('admin.users.export') }}" class="btn btn-success mb-3">  
+    <i class="fa-regular fa-file-excel"></i> Download XLS  
+    </a>      
+    @endif
         <!-- Tombol Back -->  
         <a href="{{ route('absen.index') }}" class="btn btn-secondary mb-3">Kembali ke Kehadiran</a>  
   

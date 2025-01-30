@@ -7,10 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
-class User extends Authenticatable
+class User extends Authenticatable  implements FromCollection
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    public function collection()
+    {
+        return User::all();
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +37,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'email_verified_at',
     ];
 
     /**

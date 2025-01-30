@@ -6,6 +6,11 @@
     @if(Auth::user()->role != 'admin')
     <a class="text-white btn btn-primary mb-3" href="{{ route('absen.create') }}">Absen</a>
     @endif
+    @if(Auth::user()->role == 'admin')
+    <a href="{{ route('admin.attendance.export') }}" class="btn btn-success mb-3">  
+    <i class="fa-regular fa-file-excel"></i> Download XLS  
+    </a>      
+    @endif
     <table id="attendanceTable" class="table table-bordered">
         <thead>
             <tr>
